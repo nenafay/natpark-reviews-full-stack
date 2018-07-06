@@ -1,14 +1,11 @@
 package reviews.fullstack.national.parks;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.assertj.core.util.Arrays;
 
 @Entity
 public class Trip {
@@ -21,16 +18,15 @@ public class Trip {
 	private String description;
 	
 	@OneToMany(mappedBy = "trip")
-	private Collection<Object> reviews;
+	private Collection<Review> reviews;
 	
 	public Trip() {
 		
 	}
 		
-	public Trip(String name, String description, Review...reviews) {
+	public Trip(String name, String description) {
 		this.name = name;
 		this.description = description;
-		this.reviews = new HashSet<>(Arrays.asList(reviews));
 	}
 
 	public long getId() {
@@ -46,18 +42,11 @@ public class Trip {
 		return description;
 	}
 
-	public Collection<Object> getReviews() {
-		return reviews;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
 		return result;
 	}
 
@@ -70,24 +59,17 @@ public class Trip {
 		if (getClass() != obj.getClass())
 			return false;
 		Trip other = (Trip) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (id != other.id)
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (reviews == null) {
-			if (other.reviews != null)
-				return false;
-		} else if (!reviews.equals(other.reviews))
-			return false;
 		return true;
+	}
+
+	public Collection<Review> getReviews() {
+		return reviews;
+	}
+	
+	public void setReviews(Collection<Review> reviews) {
+		this.reviews = reviews;
 	}
 	
 

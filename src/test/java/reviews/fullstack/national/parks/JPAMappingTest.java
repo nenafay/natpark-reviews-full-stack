@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner; 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -31,7 +31,9 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldSaveAndLoadReview() {
-		Review review = reviewRepo.save(new Review("review", "description"));
+		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
+		
+		Review review = reviewRepo.save(new Review("review", "description", aug2015));
 		long reviewId = review.getId();
 		
 		entityManager.flush();
@@ -44,7 +46,9 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldGenerateReviewId() {
-		Review review = reviewRepo.save(new Review("review", "description"));
+		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
+		
+		Review review = reviewRepo.save(new Review("review", "description", aug2015));
 		long reviewId = review.getId();
 		
 		entityManager.flush();
@@ -68,13 +72,13 @@ public class JPAMappingTest {
 	}
 	
 	@Test
-	public void shouldEstablishCategoryToReviewRelationship() {
-		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes"));
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted"));
-		
-		Trip trip = new Trip("August 2015", "Ohio to Maine for Janna's Wedding", acadia, adirondack);
+	public void shouldEstablishTripToReviewRelationship() {
+		Trip trip = new Trip("August 2015", "Ohio to Maine for Janna's Wedding");
 		trip = tripRepo.save(trip);
 		long tripId = trip.getId();
+		
+		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", trip));
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", trip));
 		
 		entityManager.flush();
 		entityManager.clear();
@@ -86,5 +90,9 @@ public class JPAMappingTest {
 		
 	}
 		
+	@Test
+	public void shouldFindReviewsForTrip() {
+		
+	}
 
 }
