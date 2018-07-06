@@ -1,8 +1,13 @@
 package reviews.fullstack.national.parks;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 
@@ -18,9 +23,10 @@ public class Review {
 
 	private String description;
 	
-	public Review(String name, String description, Trip trip) {
+	public Review(String name, String description, Trip trip, Tag...tags) {
 		this.name = name;
 		this.description = description;
+		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 	
 	public Review() {
@@ -41,6 +47,9 @@ public class Review {
 	
 	@ManyToOne
 	private Trip trip;
+	
+	@ManyToMany
+	private Collection<Tag> tags;
 
 	@Override
 	public int hashCode() {
