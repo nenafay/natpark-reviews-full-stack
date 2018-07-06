@@ -1,6 +1,7 @@
 package reviews.fullstack.national.parks;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
@@ -26,7 +27,7 @@ public class JPAMappingTest {
 	private ReviewRepository reviewRepo;
 	
 	@Resource
-	private ParkCategoryRepository tripRepo;
+	private TripRepository tripRepo;
 	
 	@Test
 	public void shouldSaveAndLoadReview() {
@@ -54,25 +55,36 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldSaveAndLoadTrip() {
-		Trip trip = tripRepo.save(new Trip());
-		long tripId = Trip.getId();
+		Trip trip = tripRepo.save(new Trip("trip", "description"));
+		long tripId = trip.getId();
 		
 		entityManager.flush();
 		entityManager.clear();
 		
-		Optional<Trip>result = tripRepo.findById(categoryId);
-		parkCategory = result.get();
-		assertThat(parkCategory.getName(), is("category"));
+		Optional<Trip>result = tripRepo.findById(tripId);
+		trip = result.get();
+		assertThat(trip.getName(), is("trip"));
 		
 	}
 	
 	@Test
 	public void shouldEstablishCategoryToReviewRelationship() {
-		Trip monument = tripRepo.save(new Trip ("National Monument"));
-		Trip historicalSite = tripRepo.save(new Trip ("National Historical Site"));
-		Trip parkland = tripRepo.save(new Trip ("Park Land"));
+		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes"));
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted"));
 		
-		Review review = new Review("")
+		Trip trip = new Trip("August 2015", "Ohio to Maine for Janna's Wedding", acadia, adirondack);
+		trip = tripRepo.save(trip);
+		long tripId = trip.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Trip> result = tripRepo.findById(tripId);
+		trip = result.get();
+		
+		assertThat(trip.getReviews(), containsInAnyOrder(adirondack, acadia));
+		
 	}
+		
 
 }

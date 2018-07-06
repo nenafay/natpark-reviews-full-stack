@@ -1,8 +1,11 @@
 package reviews.fullstack.national.parks;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -45,6 +48,17 @@ public class Review {
 		return true;
 	}
 	
+	public Collection<Trip> getTrips() {
+		return trips;
+	}
+	
+	public void setTrip(Collection<Trip> trips) {
+		this.trips = trips;
+	}
+	
+	@ManyToOne
+	private Collection<Object> reviews;
+	
 	public Review() {
 		
 	}
@@ -66,5 +80,9 @@ public class Review {
 		this.description = description;
 	}
 	
+	@ManyToOne
+	private Collection<Trip> trips;
+	
 
 }
+ 
