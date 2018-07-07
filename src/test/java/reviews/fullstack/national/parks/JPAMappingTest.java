@@ -87,9 +87,10 @@ public class JPAMappingTest {
 		entityManager.flush();
 		entityManager.clear();
 		
-		Optional<Trip> result = tripRepo.findById(tripId);
-		trip = result.get();
-		
+		Optional<Trip> tripOption = tripRepo.findById(tripId);
+		Optional<Review> reviewOption = reviewRepo.findById(tripId);
+		Trip resultTrip = tripOption.get();
+		Review resultReview = reviewOption.get();
 		assertThat(trip.getReviews(), containsInAnyOrder(adirondack, acadia));
 		
 	}

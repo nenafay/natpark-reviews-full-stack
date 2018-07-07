@@ -34,9 +34,15 @@ public class TripController {
 		return("trips");
 	}
 
-	public void findOneReview(long arbitraryReviewId, Model model) {
-		// TODO Auto-generated method stub
+	@RequestMapping("/review")
+	public void findOneReview(long arbitraryReviewId, Model model) throws ReviewNotFoundException {
+		Optional<Review> review = reviewRepo.findById(arbitraryReviewId);
 		
+		if(review.isPresent()) {
+			model.addAttribute("reviews", review.get());
+			model.addAttribute("trips", tripRepo.findByReviewsContains(review.get)));
+			return "review";
+		} 
 	}
 	
 

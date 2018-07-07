@@ -26,7 +26,7 @@ public class TripControllerTest {
 	private Trip anotherTrip;
 	
 	@Mock
-	private Review firstReview;
+	private Review review;
 	
 	@Mock 
 	private Review secondReview;
@@ -75,6 +75,7 @@ public class TripControllerTest {
 		underTest.findOneReview(arbitraryReviewId, model);
 		verify(model).addAttribute("reviews", review);
 	}
+
 	
 
 }
