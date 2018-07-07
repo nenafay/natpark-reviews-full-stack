@@ -23,9 +23,14 @@ public class Review {
 
 	private String description;
 	
+	public Review (String name) {
+		this.name = name;
+	}
+	
 	public Review(String name, String description, Trip trip, Tag...tags) {
 		this.name = name;
 		this.description = description;
+		this.trip = trip;
 		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 	
@@ -43,6 +48,10 @@ public class Review {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public Trip getTrip() {
+		return trip;
 	}
 	
 	@ManyToOne

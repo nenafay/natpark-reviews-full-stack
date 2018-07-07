@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner; 
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -77,21 +77,26 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldEstablishTripToReviewRelationship() {
-		Trip trip = new Trip("August 2015", "Ohio to Maine for Janna's Wedding");
-		trip = tripRepo.save(trip);
-		long tripId = trip.getId();
+		//many reviews will use one trip
+		Trip aug2015 = tripRepo.save(new Trip("August'15", "description"));
+		long tripId = aug2015.getId();
 		
-		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", trip));
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", trip));
+		Review adirondack = reviewRepo.save(new Review("name", "description", aug2015));
+		Review acadia = reviewRepo.save(new Review("name", "description", aug2015));
 		
 		entityManager.flush();
 		entityManager.clear();
 		
 		Optional<Trip> tripOption = tripRepo.findById(tripId);
-		Optional<Review> reviewOption = reviewRepo.findById(tripId);
 		Trip resultTrip = tripOption.get();
-		Review resultReview = reviewOption.get();
-		assertThat(trip.getReviews(), containsInAnyOrder(adirondack, acadia));
+		
+		for (Review rev : resultTrip.getReviews()) {
+			System.out.println(rev.getId());
+		}
+		if (resultTrip.getReviews().size() == 0) {
+			System.out.println("NO REVIEWS SAVED");
+		}
+		assertThat(resultTrip.getReviews(), containsInAnyOrder(adirondack, acadia));
 		
 	}
 		
@@ -129,25 +134,18 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldEstablishTagToReviewRelationship() {
-		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
+		Tag lake = tagRepo.save(new Tag("lake"));
+		Tag hiking = tagRepo.save(new Tag ("hiking"));
+		Tag appalachianTrail = tagRepo.save(new Tag ("Appalachian Trail"));
 		
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", aug2015));
-		reviewRepo.save(review);
-		long reviewId = review.getId();
+		Trip aug2015 = tripRepo.save(new Trip("August '15", "Janna's Wedding"));
 		
-		Tag amenity = new Tag("amenity", review);
-		tagRepo.save(amenity);
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", aug2015, hiking, appalachianTrail));
+		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", aug2015, lake, hiking));
 		
-		Tag amenity2 = new Tag("amenity", review);
-		tagRepo.save(amenity2);
+		Collection<Tag>tagForReviews = tagRepo.findByReviewsContains(acadia, adirondack);
 		
-		entityManager.flush();
-		entityManager.clear();
-		
-		Optional<Review>result = reviewRepo.findById(reviewId);
-		review = result.get();
-		assertThat(review.getTags(), containsInAnyOrder(amenity, amenity2));
-		
+		assertThat(tagForReviews, containsInAnyOrder(lake, hiking, appalachianTrail));
 	}
 
 }
