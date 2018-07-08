@@ -16,7 +16,7 @@
     <main>
         <h1>Road Trips</h1>
         <div th:each="trip : ${trips}"> 
-            <img src = ...></src>
+            <img th:src = "@{${trip.imgUrl}}"/>
             <a th:href = "@{/trip(id=${trip.id})}"
             th:text = "${trip.name}"></a>
         </div>

@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -17,10 +19,11 @@ public class Review {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
 	private String name;
 
+	@Lob
 	private String description;
 
 	private String imgUrl;
@@ -34,14 +37,14 @@ public class Review {
 		this.description = description;
 		this.trip = trip;
 		this.tags = new HashSet<>(Arrays.asList(tags));
-		this.imgUrl = imgUrl;
+		this.setImgUrl(imgUrl);
 	}
 	
 	public Review() {
 		
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -83,6 +86,14 @@ public class Review {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 }

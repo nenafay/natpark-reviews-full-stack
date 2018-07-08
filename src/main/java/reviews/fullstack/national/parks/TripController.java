@@ -22,11 +22,11 @@ public class TripController {
 	TagRepository tagRepo;
 	
 	@RequestMapping("/trip")
-	public String findOneTrip(long arbitraryTripId, Model model) throws TripNotFoundException {
-		Optional<Trip> trip = tripRepo.findById(arbitraryTripId);
+	public String findOneTrip(@RequestParam(name="id") long tripId, Model model) throws TripNotFoundException {
+		Optional<Trip> trip = tripRepo.findById(tripId);
 		
 		if(trip.isPresent()) {
-			model.addAttribute("trips", trip.get());
+			model.addAttribute("trip", trip.get());
 			return "trip";
 		}
 		throw new TripNotFoundException();
@@ -39,12 +39,12 @@ public class TripController {
 	}
 
 	@RequestMapping("/review")
-	public void findOneReview(long arbitraryReviewId, Model model) throws ReviewNotFoundException {
+	public void findOneReview(@RequestParam(name="id")long arbitraryReviewId, Model model) throws ReviewNotFoundException {
 		Optional<Review> review = reviewRepo.findById(arbitraryReviewId);
 		
 		if(review.isPresent()) {
 			model.addAttribute("reviews", review.get());
-			model.addAttribute("trips", tripRepo.findByReviewsContains(review.get()));
+			model.addAttribute("trip", tripRepo.findByReviewsContains(review.get()));
 			return;
 		} 
 		throw new ReviewNotFoundException();
@@ -56,23 +56,23 @@ public class TripController {
 		return("reviews");
 	}
 	
-	@RequestMapping("/tag")
-	public String findOneTag(@RequestParam(value = "id")long arbitraryTagId, Model model) throws TagNotFoundException {
-		Optional<Tag> tag = tagRepo.findById(arbitraryTagId);
-		
-		if(tag.isPresent()) {
-			model.addAttribute("tags", tag.get());
-			model.addAttribute("reviews", reviewRepo.findByTagsContains(tag.get()));
-			
-			return "tag";
-		}
-		throw new TagNotFoundException(); 
-	}
-	
-	@RequestMapping("/show-tags")
-	public String findAllTags(Model model) {
-		model.addAttribute("tags", tagRepo.findAll());
-		return("tags");
-	}
+//	@RequestMapping("/tag")
+//	public String findOneTag(@RequestParam(value = "id")Long arbitraryTagId, Model model) throws TagNotFoundException {
+//		Optional<Tag> tag = tagRepo.findById(arbitraryTagId);
+//		
+//		if(tag.isPresent()) {
+//			model.addAttribute("tags", tag.get());
+//			model.addAttribute("reviews", reviewRepo.findByTagsContains(tag.get()));
+//			
+//			return "tag";
+//		}
+//		throw new TagNotFoundException(); 
+//	}
+//	
+//	@RequestMapping("/show-tags")
+//	public String findAllTags(Model model) {
+//		model.addAttribute("tags", tagRepo.findAll());
+//		return("tags");
+//	}
 
 }

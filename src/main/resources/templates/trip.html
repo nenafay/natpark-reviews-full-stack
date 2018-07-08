@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +9,9 @@
   <script src="main.js"></script>
 </head>
 <body>
-    <header>
-      <h1 th:text = "${trip.name}"></h1>
-      <h2 th:text = "${trip.description}"></h2>
+   <header>
+      <h1 th:text="${trip.name}"></h1>
+      <h2 th:text="${trip.description}"></h2>
     </header>
     <main>
       <h2>National Park Reviews for People Who Don't Plan</h2>

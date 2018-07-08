@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -26,28 +27,28 @@ public class TripControllerMockMVCTest {
 	@Resource
 	private MockMvc mvc;
 	
-	@Resource
+	@Mock
 	private Review review;
 	
-	@Resource
+	@Mock
 	private Review secondReview;
 	
-	@Resource
+	@Mock
 	private Review thirdReview;
 	
-	@Resource 
+	@Mock
 	private Trip trip;
 	
-	@Resource 
+	@Mock
 	private Trip secondTrip;
 	
-	@Resource
+	@Mock
 	private Tag tag;
 	
-	@Resource
+	@Mock
 	private Tag secondTag;
 	
-	@Resource
+	@Mock
 	private Tag thirdTag;
 	
 	@MockBean
@@ -73,6 +74,7 @@ public class TripControllerMockMVCTest {
 		mvc.perform(get("/trip?id=1")).andExpect(status().isOk());
 	}
 	
+	
 	@Test
 	public void shouldNotBeOkForSingleTrip() throws Exception{
 		mvc.perform(get("/trip?id=1")).andExpect(status().isNotFound());
@@ -81,8 +83,48 @@ public class TripControllerMockMVCTest {
 	@Test
 	public void shouldPutSingleTripIntoModel()throws Exception {
 		when(tripRepo.findById(1L)).thenReturn(Optional.of(trip));
-		mvc.perform(get("/trip?id=1")).andExpect(model().attribute("trip", is(trip)));
+		mvc.perform(get("/trip?id=1")).andExpect(model().attribute("trips", is(trip)));
 	}
 	
+	@Test
+	public void shouldPutAllTripsIntoModel() throws Exception {
+		Collection<Trip>allTrips = Arrays.asList(trip, secondTrip);
+		when(tripRepo.findAll()).thenReturn(allTrips);
+		
+		mvc.perform(get("/show-trips")).andExpect(model().attribute("trips",  is(allTrips)));
+	}
+	@Test
+	public void shouldRouteForSingleReviewView() throws Exception {
+		long arbitraryReviewId = 1;
+		when(reviewRepo.findById(arbitraryReviewId)).thenReturn(Optional.of(review));
+		mvc.perform(get("/review?id=1")).andExpect(view().name(is("review")));
+	}
+	
+	@Test
+	public void shouldBeOkForSingleReview() throws Exception {
+		long arbitraryReviewId = 1;
+		when(reviewRepo.findById(arbitraryReviewId)).thenReturn(Optional.of(review));
+		mvc.perform(get("/review?id=1")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldNotBeOkForSingleReview() throws Exception{
+		mvc.perform(get("/review?id=1")).andExpect(status().isNotFound());
+	}
+	
+	
+	@Test
+	public void shouldPutSingleReviewIntoModel()throws Exception {
+		when(reviewRepo.findById(1L)).thenReturn(Optional.of(review));
+		mvc.perform(get("/review?id=1")).andExpect(model().attribute("review", is(review)));
+	}
+	
+	@Test
+	public void shouldPutAllReviewsIntoModel() throws Exception {
+		Collection<Review>allReviews = Arrays.asList(review, secondReview);
+		when(reviewRepo.findAll()).thenReturn(allReviews);
+		
+		mvc.perform(get("/show-reviews")).andExpect(model().attribute("reviews",  is(allReviews)));
+	}
 	
 }

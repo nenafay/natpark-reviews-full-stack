@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+    <header>
+      <h1 th:text = "'If you want ' + ${tag.name} + ', try these parks:'"></h1>
+      <h2>National Parks for People Who Don't Plan</h2>
+    </header>
+    
+    <main>
+      <div th:each = "product:${category.products}">
+        <a th:href = "@{/product(id=${product.id})}"
+        th:text = "${product.name}"></a>
+      </div>
+
+    </main>
+  
+</body>
+</html>

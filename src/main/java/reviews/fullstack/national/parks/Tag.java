@@ -1,21 +1,19 @@
 package reviews.fullstack.national.parks;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import org.assertj.core.util.Arrays;
-
 @Entity
 public class Tag {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	
 	private String name;
 	
@@ -40,10 +38,10 @@ public class Tag {
 	
 	public Tag(String name, Review ...reviews) {
 		this.name = name;
-		this.reviews = reviews;
+		this.reviews = Arrays.asList(reviews);
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	

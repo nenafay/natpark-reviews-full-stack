@@ -57,7 +57,7 @@ public class TripControllerTest {
 		when(tripRepo.findById(arbitraryTripId)).thenReturn(Optional.of(trip));
 		
 		underTest.findOneTrip(arbitraryTripId, model);
-		verify(model).addAttribute("trips", trip);
+		verify(model).addAttribute("trip", trip);
 	}
 	@Test
 	public void shouldAddAllTripsToModel() {
