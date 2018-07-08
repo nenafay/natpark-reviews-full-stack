@@ -9,12 +9,11 @@
 </head>
 <body>
     <header>
-      <h1 th:text = "'Category: ' + ${category.name}"></h1>
-      <h2>Still, Amazon's Top Competitor... </h2>
+      <h1 th:text = "'If you want ' + ${tag.name} + ', try these parks:'"></h1>
+      <h2>National Parks for People Who Don't Plan</h2>
     </header>
     
     <main>
-      <h2>Products:</h2>
       <div th:each = "product:${category.products}">
         <a th:href = "@{/product(id=${product.id})}"
         th:text = "${product.name}"></a>

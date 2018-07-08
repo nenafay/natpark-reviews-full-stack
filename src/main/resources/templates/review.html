@@ -17,6 +17,7 @@
     <main>
       <h2>:</h2>
       <div th:each = "product:${category.products}">
+        <img th:src = "@{${review.imgUrl}}"/>
         <a th:href = "@{/product(id=${product.id})}"
         th:text = "${product.name}"></a>
       </div>
