@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Generational Journeys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+    <header>
+      <h1>Generational Journeys</h1>
+      <h2>Road Trips and Reviews with My Mother and Daughter</h2>
+    </header>
+    <main>
+        <h1>Road Trips</h1>
+        <div th:each="trip : ${trips}"> 
+            <img src = ...></src>
+            <a th:href = "@{/trip(id=${trip.id})}"
+            th:text = "${trip.name}"></a>
+        </div>
+    </main>
+  
+</body>
+</html>

@@ -37,7 +37,7 @@ public class JPAMappingTest {
 	public void shouldSaveAndLoadReview() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
 		
-		Review review = reviewRepo.save(new Review("review", "description", aug2015));
+		Review review = reviewRepo.save(new Review("review", "description","imgUrl", aug2015));
 		long reviewId = review.getId();
 		
 		entityManager.flush();
@@ -52,7 +52,7 @@ public class JPAMappingTest {
 	public void shouldGenerateReviewId() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
 		
-		Review review = reviewRepo.save(new Review("review", "description", aug2015));
+		Review review = reviewRepo.save(new Review("review", "description","imgUrl", aug2015));
 		long reviewId = review.getId();
 		
 		entityManager.flush();
@@ -81,8 +81,8 @@ public class JPAMappingTest {
 		Trip aug2015 = tripRepo.save(new Trip("August'15", "description"));
 		long tripId = aug2015.getId();
 		
-		Review adirondack = reviewRepo.save(new Review("name", "description", aug2015));
-		Review acadia = reviewRepo.save(new Review("name", "description", aug2015));
+		Review adirondack = reviewRepo.save(new Review("name", "description", "imgUrl", aug2015));
+		Review acadia = reviewRepo.save(new Review("name", "description", "imgUrl", aug2015));
 		
 		entityManager.flush();
 		entityManager.clear();
@@ -104,8 +104,8 @@ public class JPAMappingTest {
 	public void shouldFindReviewsForTrip() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
 		
-		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", aug2015));
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", aug2015));
+		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes","imgUrl", aug2015));
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl",aug2015));
 		
 		entityManager.flush();
 		entityManager.clear();
@@ -120,8 +120,8 @@ public class JPAMappingTest {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding"));
 		long tripId = aug2015.getId();
 		
-		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", aug2015));
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", aug2015));
+		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", "imgUrl", aug2015));
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl", aug2015));
 		
 		entityManager.flush();
 		entityManager.clear();
@@ -140,8 +140,8 @@ public class JPAMappingTest {
 		
 		Trip aug2015 = tripRepo.save(new Trip("August '15", "Janna's Wedding"));
 		
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", aug2015, hiking, appalachianTrail));
-		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", aug2015, lake, hiking));
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl", aug2015, hiking, appalachianTrail));
+		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", "imgUrl", aug2015, lake, hiking));
 		
 		Collection<Tag>tagForReviews = tagRepo.findByReviewsContains(acadia, adirondack);
 		

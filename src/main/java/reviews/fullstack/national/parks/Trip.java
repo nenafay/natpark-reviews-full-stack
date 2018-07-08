@@ -19,14 +19,16 @@ public class Trip {
 	
 	@OneToMany(mappedBy = "trip")
 	private Collection<Review> reviews;
+	private String imgUrl;
 	
 	public Trip() {
 		
 	}
 		
-	public Trip(String name, String description) {
+	public Trip(String name, String description, String imgUrl) {
 		this.name = name;
 		this.description = description;
+		this.imgUrl = imgUrl;
 	}
 
 	public long getId() {
@@ -40,6 +42,10 @@ public class Trip {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
 	@Override

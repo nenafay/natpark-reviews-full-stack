@@ -22,16 +22,19 @@ public class Review {
 	private String name;
 
 	private String description;
+
+	private String imgUrl;
 	
 	public Review (String name) {
 		this.name = name;
 	}
 	
-	public Review(String name, String description, Trip trip, Tag...tags) {
+	public Review(String name, String description, String imgUrl, Trip trip, Tag...tags) {
 		this.name = name;
 		this.description = description;
 		this.trip = trip;
 		this.tags = new HashSet<>(Arrays.asList(tags));
+		this.imgUrl = imgUrl;
 	}
 	
 	public Review() {

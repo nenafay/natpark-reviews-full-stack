@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TripController {
@@ -16,6 +17,9 @@ public class TripController {
 	
 	@Resource
 	ReviewRepository reviewRepo;
+	
+	@Resource
+	TagRepository tagRepo;
 	
 	@RequestMapping("/trip")
 	public String findOneTrip(long arbitraryTripId, Model model) throws TripNotFoundException {
@@ -40,10 +44,35 @@ public class TripController {
 		
 		if(review.isPresent()) {
 			model.addAttribute("reviews", review.get());
-			model.addAttribute("trips", tripRepo.findByReviewsContains(review.get)));
-			return "review";
+			model.addAttribute("trips", tripRepo.findByReviewsContains(review.get()));
+			return;
 		} 
+		throw new ReviewNotFoundException();
 	}
 	
+	@RequestMapping("/show-reviews")
+	public String findAllReviews(Model model) {
+		model.addAttribute("reviews", reviewRepo.findAll());
+		return("reviews");
+	}
+	
+	@RequestMapping("/tag")
+	public String findOneTag(@RequestParam(value = "id")long arbitraryTagId, Model model) throws TagNotFoundException {
+		Optional<Tag> tag = tagRepo.findById(arbitraryTagId);
+		
+		if(tag.isPresent()) {
+			model.addAttribute("tags", tag.get());
+			model.addAttribute("reviews", reviewRepo.findByTagsContains(tag.get()));
+			
+			return "tag";
+		}
+		throw new TagNotFoundException(); 
+	}
+	
+	@RequestMapping("/show-tags")
+	public String findAllTags(Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return("tags");
+	}
 
 }
