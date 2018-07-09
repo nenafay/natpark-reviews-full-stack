@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(TripController.class)
+@WebMvcTest(ReviewController.class)
 public class TripControllerMockMVCTest {
 
 	@Resource
@@ -42,23 +42,11 @@ public class TripControllerMockMVCTest {
 	@Mock
 	private Trip secondTrip;
 	
-	@Mock
-	private Tag tag;
-	
-	@Mock
-	private Tag secondTag;
-	
-	@Mock
-	private Tag thirdTag;
-	
 	@MockBean
 	private TripRepository tripRepo;
 	
 	@MockBean
 	private ReviewRepository reviewRepo;
-	
-	@MockBean
-	private TagRepository tagRepo;
 	
 	@Test
 	public void shouldRouteForSingleTripView() throws Exception {

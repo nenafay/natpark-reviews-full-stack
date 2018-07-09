@@ -30,9 +30,6 @@ public class JPAMappingTest {
 	@Resource
 	private TripRepository tripRepo;
 	
-	@Resource
-	private TagRepository tagRepo;
-	
 	@Test
 	public void shouldSaveAndLoadReview() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding", "imgUrl"));
@@ -110,7 +107,7 @@ public class JPAMappingTest {
 		entityManager.flush();
 		entityManager.clear();
 		
-		Collection<Review>reviewsForTrip = reviewRepo.findByTrip(aug2015);
+		Collection<Review>reviewsForTrip = reviewRepo.findByTripContains(aug2015);
 		
 		assertThat(reviewsForTrip, containsInAnyOrder(adirondack, acadia));	
 	}
@@ -131,22 +128,5 @@ public class JPAMappingTest {
 		assertThat(reviewsForTrip, containsInAnyOrder(acadia, adirondack));
 
 	}
-	
-//	@Test
-//	public void shouldEstablishTagToReviewRelationship() {
-//		Tag lake = tagRepo.save(new Tag("lake"));
-//		Tag hiking = tagRepo.save(new Tag ("hiking"));
-//		Tag appalachianTrail = tagRepo.save(new Tag ("Appalachian Trail"));
-//		
-//		Trip aug2015 = tripRepo.save(new Trip("August '15", "Janna's Wedding", "imgUrl"));
-//		
-//		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl", aug2015, hiking, appalachianTrail));
-//		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes", "imgUrl", aug2015, lake, hiking));
-//		
-//		Collection<Tag>tagForReviews = tagRepo.findByReviewsContains(acadia, adirondack);
-//		
-//		
-//		assertThat(tagForReviews, containsInAnyOrder(lake, hiking, appalachianTrail));
-//	}
 
 }
