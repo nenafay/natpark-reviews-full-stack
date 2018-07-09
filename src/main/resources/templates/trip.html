@@ -15,12 +15,12 @@
     </header>
     <main>
       <h2>National Park Reviews for People Who Don't Plan</h2>
-      <div th:each = "review:${trip.reviews}">
-        <img th:src = "@{${review.imgUrl}}"/>
-        <a th:href = "@{/review(id=${review.id})}"
-        th:text = "${review.name}"></a>
-        <img th:src = "....">
-      </div>
+      <div1 th:each = "review:${trip.reviews}">
+          <a th:href = "@{/trip(id=${trip.id})}">
+            <img th:src = "@{${trip.imgUrl}}"/>
+          </a>
+          <p th:text = "${trip.name}"></p>
+      </div1>
 
     </main>
   
