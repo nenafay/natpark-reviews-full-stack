@@ -100,6 +100,7 @@ public class JPAMappingTest {
 	@Test
 	public void shouldFindReviewsForTrip() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding", "imgUrl"));
+		long tripId = aug2015.getId();
 		
 		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes","imgUrl", aug2015));
 		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl",aug2015));
@@ -107,7 +108,8 @@ public class JPAMappingTest {
 		entityManager.flush();
 		entityManager.clear();
 		
-		Collection<Review>reviewsForTrip = reviewRepo.findByTripContains(aug2015);
+		Optional<Trip> tripOptional = tripRepo.findById(tripId);
+		Collection<Review>reviewsForTrip = tripOptional.get().getReviews();
 		
 		assertThat(reviewsForTrip, containsInAnyOrder(adirondack, acadia));	
 	}

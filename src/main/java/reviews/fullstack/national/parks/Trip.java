@@ -1,5 +1,6 @@
 package reviews.fullstack.national.parks;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -29,6 +30,7 @@ public class Trip {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
+		this.reviews = new ArrayList<Review>();
 	}
 
 	public long getId() {
@@ -71,6 +73,7 @@ public class Trip {
 	}
 
 	public Collection<Review> getReviews() {
+		System.out.println(reviews);
 		return reviews;
 	}
 	
