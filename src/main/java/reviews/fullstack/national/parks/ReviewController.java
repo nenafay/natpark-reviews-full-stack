@@ -32,7 +32,7 @@ public class ReviewController {
 	@RequestMapping("/show-trips")
 	public String findAllTrips(Model model) {
 		model.addAttribute("trips", tripRepo.findAll());
-		return("trips");
+		return "trips";
 	}
 
 	@RequestMapping("/review")
@@ -40,7 +40,7 @@ public class ReviewController {
 		Optional<Review> review = reviewRepo.findById(arbitraryReviewId);
 		
 		if(review.isPresent()) {
-			model.addAttribute("reviews", review.get());
+			model.addAttribute("review", review.get());
 			model.addAttribute("trip", tripRepo.findByReviewsContains(review.get()));
 			return ("review");
 		} 

@@ -71,7 +71,7 @@ public class TripControllerMockMVCTest {
 	@Test
 	public void shouldPutSingleTripIntoModel()throws Exception {
 		when(tripRepo.findById(1L)).thenReturn(Optional.of(trip));
-		mvc.perform(get("/trip?id=1")).andExpect(model().attribute("trips", is(trip)));
+		mvc.perform(get("/trip?id=1")).andExpect(model().attribute("trip", is(trip)));
 	}
 	
 	@Test
@@ -112,7 +112,7 @@ public class TripControllerMockMVCTest {
 		Collection<Review>allReviews = Arrays.asList(review, secondReview);
 		when(reviewRepo.findAll()).thenReturn(allReviews);
 		
-		mvc.perform(get("/show-reviews")).andExpect(model().attribute("reviews",  is(allReviews)));
+		mvc.perform(get("/show-reviews")).andExpect(model().attribute("reviews", is(allReviews)));
 	}
 	
 }

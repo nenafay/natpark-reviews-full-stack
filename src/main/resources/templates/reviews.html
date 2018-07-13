@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Generational Journeys: Review</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+    <header>
+      <h2>National Park Reviews for People Who Don't Plan</h2>
+    </header>
+    
+    <main>
+      <h2>All Reviews</h2>
+      <div2 th:each = "review: ${reviews}">
+        <img th:src = "@{${review.imgUrl}}"/>
+        <a th:href = "@{/review(id=${review.id})}"
+        th:text = "${review.name}"></a>
+      </div2>
+
+    </main>
+  
+</body>
+</html>

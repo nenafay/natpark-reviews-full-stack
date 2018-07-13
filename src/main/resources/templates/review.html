@@ -16,12 +16,9 @@
     
     <main>
       <h2></h2>
-      <div2 th:each = "review:${category.review}">
         <img th:src = "@{${review.imgUrl}}"/>
         <a th:href = "@{/review(id=${review.id})}"
-        th:text = "${review.name}"></a>
-      </div2>
-
+        	th:text = "${review.name}"></a>
     </main>
   
 </body>
