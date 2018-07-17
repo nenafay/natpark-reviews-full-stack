@@ -1,0 +1,67 @@
+*{
+    font-family: "Arial Narrow", sans-serif;
+	line-height:1.618em;
+	box-sizing: border-box;
+	padding: 0;
+	margin:0;
+    color:white;
+    
+}
+
+:root {
+    --sage: rgba(140, 190, 160, 1);
+    --emeralddeep:  rgba(10, 40, 20,1);
+    --medgray:  rgb(75, 75, 75);
+    --contrastText:'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
+}
+
+html{
+    font-size: 16px;
+}
+
+body {
+    background: var(--sage);
+}
+
+h1 {
+   font-family: var (--contrastText);
+   color: var(--emeralddeep);
+}
+
+h2 {
+    font-size: .75 em;
+    color: var(--sage);
+}
+
+.container {
+    width: 80%;
+    min-height: 80vh;
+    margin: 10%;
+    background-color: var(--medgray);
+    padding: 2em;
+    border-radius: .5em;
+}
+
+header {
+    display: grid;
+    margin: 1em;
+    max-height: 20vh;
+    grid-template-rows: repeat(2, 1fr);
+    align-content: left;
+}
+
+div1 {
+    display: grid;
+    max-width: 70%;
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+}
+
+div1 > img {
+    width: 240px;
+    height: 160px;
+    border-style: inset 5px;
+    border: 5px solid black;
+}

@@ -13,6 +13,9 @@ public class TripPopulator implements CommandLineRunner{
 	
 	@Resource
 	private ReviewRepository reviewRepo;
+	
+	@Resource
+	private TagRepository tagRepo;
 
 	@Override
 	public void run(String...args) throws Exception {
@@ -76,5 +79,22 @@ public class TripPopulator implements CommandLineRunner{
 		Review joshuaTree = reviewRepo.save(new Review ("JoshuaTree National Park", "Ut enim ad minima veniam, quis nostrum exercitationem ullam" + 
 				"corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit " + 
 				"esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", "images/tree.jpg", jun17));
+	
+		Tag lake = new Tag("lake","/images/lake.jpg", acadia, adirondack, whitemts, wayne);
+		
+		Tag family = new Tag("family friendly", "/images/family.jpg", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon );
+		
+		Tag science = new Tag("science","/images/science.jpg", joshuaTree, deathValley, escalante, grandCanyon);
+		
+		Tag history = new Tag("history", "/images/history.jpg", deathValley, yosemite, moundCity);
+		
+		Tag tent = new Tag("tent camping", "/images/tent.jpg", sequoia, joshuaTree, whitemts, acadia, adirondack);
+		
+		Tag popular = new Tag("popular", "/images/popular.jpg", sequoia, joshuaTree, yosemite, grandCanyon);
+		
+		Tag noBugs = new Tag("not buggy", "images/noBugs.jpg", joshuaTree, deathValley, escalante, grandCanyon);
+		
+		Tag basic = new Tag("basic", "images/basic.jpg", deathValley, wayne, whitemts);
+
 	}	
 }
