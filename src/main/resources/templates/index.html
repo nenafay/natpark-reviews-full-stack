@@ -15,11 +15,11 @@
     </header>
     <main>
         <h1>Road Trips</h1>
-        <div1 th:each="trip : ${trips}"> 
-            <a th:href = "@{/trip(id=${trip.id})}">
-            <img th:src = "@{${trip.imgUrl}}"/>
+        <div class="textblock"> 
+            <p>In my family, we camp - properly - with a tent and an out-of-date road map and a general direction in mind. We aim for the wilderness and unspoiled wild places and since we don't know exactly where we're going or how long we'll stay, it means we don't plan much either. What's the fun in booking ahead?</p>
+            <p> This site is a dedicated list of the journeys we've taken and the fun places and parks we've stopped at along the way. The focus is on National Parks, forests, and historical sites, but those aren't the only fun places to go, so you might find more along the way. Enjoy!</p>
+            <a th:href = "@{/trips}">Check out these trips!
             </a>
-            <p th:text = "${trip.name}"></p>
         </div1>
     </main>
   

@@ -82,7 +82,7 @@ public class TripPopulator implements CommandLineRunner{
 	
 		Tag lake = new Tag("lake","/images/lake.jpg", acadia, adirondack, whitemts, wayne);
 		
-		Tag family = new Tag("family friendly", "/images/family.jpg", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon );
+		Tag family = new Tag("family friendly", "/images/family.jpg", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite );
 		
 		Tag science = new Tag("science","/images/science.jpg", joshuaTree, deathValley, escalante, grandCanyon);
 		

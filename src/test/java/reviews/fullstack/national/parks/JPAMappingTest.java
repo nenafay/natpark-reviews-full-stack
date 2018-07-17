@@ -33,6 +33,9 @@ public class JPAMappingTest {
 	@Resource 
 	private TagRepository tagRepo;
 	
+	@Resource
+	private CommentRepository commentRepo;
+	
 	@Test
 	public void shouldSaveAndLoadReview() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding", "imgUrl"));
@@ -144,6 +147,15 @@ public class JPAMappingTest {
 		long tagId = tag.getId();
 			
 		
+	}
+	
+	@Test
+	public void shouldEstablishReviewToCommentRelationship() {
+		Review adirondack = reviewRepo.save(new Review("AdirondackNationalPark"));
+		long reviewId = adirondack.getId();
+		
+		Comment comment1 = commentRepo.save(new Comment("date", "commentor", "text"));
+		Comment comment2 = commentRepo.save(new Comment("date", "commentor", "text"));
 	}
 
 }

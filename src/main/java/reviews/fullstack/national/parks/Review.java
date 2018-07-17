@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -32,6 +33,8 @@ public class Review {
 	@ManyToMany(mappedBy = "reviews")
 	private Collection<Tag> tags;
 	
+	@OneToMany(mappedBy = "review")
+	private Collection<Comment> comments;
 	
 	public Review() {
 		
