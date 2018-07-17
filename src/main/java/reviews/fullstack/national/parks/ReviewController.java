@@ -18,6 +18,9 @@ public class ReviewController {
 	@Resource
 	ReviewRepository reviewRepo;
 	
+	@Resource
+	TagRepository tagRepo;
+	
 	@RequestMapping("/trip")
 	public String findOneTrip(@RequestParam(name="id") long tripId, Model model) throws TripNotFoundException {
 		Optional<Trip> trip = tripRepo.findById(tripId);
@@ -42,6 +45,7 @@ public class ReviewController {
 		if(review.isPresent()) {
 			model.addAttribute("review", review.get());
 			model.addAttribute("trip", tripRepo.findByReviewsContains(review.get()));
+			model.addAttribute("tag", tagRepo.findByReviewsContains(review.get()));
 			return ("review");
 		} 
 		throw new ReviewNotFoundException();
@@ -52,6 +56,25 @@ public class ReviewController {
 		model.addAttribute("reviews", reviewRepo.findAll());
 		return("reviews");
 	}
+
+	@RequestMapping("/tag")
+	public String findOneTag(@RequestParam(name="id")long arbitraryTagId, Model model) throws TagNotFoundException {
+		Optional<Tag> tag = tagRepo.findById(arbitraryTagId);
+		
+		if(tag.isPresent()) {
+			model.addAttribute("tag", tag.get());
+			return ("tag");
+		}
+		throw new TagNotFoundException();
+	}
+	
+	@RequestMapping("/show-tags")
+	public String findAllTags(Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return ("tags");
+	}
+	
+	
 
 
 }

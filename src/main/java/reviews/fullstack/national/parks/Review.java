@@ -1,9 +1,12 @@
 package reviews.fullstack.national.parks;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 
@@ -22,6 +25,18 @@ public class Review {
 
 	private String imgUrl;
 	
+	
+	@ManyToOne
+	private Trip trip;
+	
+	@ManyToMany(mappedBy = "reviews")
+	private Collection<Tag> tags;
+	
+	
+	public Review() {
+		
+	}
+	
 	public Review (String name) {
 		this.name = name;
 	}
@@ -32,10 +47,7 @@ public class Review {
 		this.trip = trip;
 		this.setImgUrl(imgUrl);
 	}
-	
-	public Review() {
-		
-	}
+
 	
 	public Long getId() {
 		return id;
@@ -52,9 +64,6 @@ public class Review {
 	public Trip getTrip() {
 		return trip;
 	}
-	
-	@ManyToOne
-	private Trip trip;
 
 	@Override
 	public int hashCode() {
