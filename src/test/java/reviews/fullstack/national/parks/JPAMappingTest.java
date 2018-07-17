@@ -145,8 +145,14 @@ public class JPAMappingTest {
 		Tag tag = new Tag("has lake", "imgUrl", adirondack, acadia);
 		tag = tagRepo.save(tag);
 		long tagId = tag.getId();
-			
 		
+		entityManager.flush();
+		entityManager.clear();
+	
+		Optional<Tag> tagOptional = tagRepo.findById(tagId);
+		Collection<Review>reviewsForTag = tagOptional.get().getReviews();
+		
+		assertThat(reviewsForTag, containsInAnyOrder(acadia, adirondack));
 	}
 	
 	@Test

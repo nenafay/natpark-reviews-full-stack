@@ -64,7 +64,10 @@ public class Tag {
 	public Tag(String name, String imgUrl, Review...reviews) {
 		this.name = name;
 		this.imgUrl = imgUrl;
-		this.reviews = new ArrayList<Review>();
+		this.reviews = new  ArrayList<Review>();
+		for (Review review : reviews) {
+			this.reviews.add(review);
+		}
 	}
 
 	public String getName() {
