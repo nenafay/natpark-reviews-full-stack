@@ -30,6 +30,9 @@ public class JPAMappingTest {
 	@Resource
 	private TripRepository tripRepo;
 	
+	@Resource 
+	private TagRepository tagRepo;
+	
 	@Test
 	public void shouldSaveAndLoadReview() {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding", "imgUrl"));
@@ -129,6 +132,18 @@ public class JPAMappingTest {
 		
 		assertThat(reviewsForTrip, containsInAnyOrder(acadia, adirondack));
 
+	}
+	
+	@Test
+	public void shouldEstablishTagToReviewsRelationship() {
+		Review adirondack = reviewRepo.save(new Review("Adirondack National Park"));
+		Review acadia = reviewRepo.save(new Review("Acadia National Park"));
+		
+		Tag tag = new Tag("has lake", "imgUrl", adirondack, acadia);
+		tag = tagRepo.save(tag);
+		long tagId = tag.getId();
+			
+		
 	}
 
 }

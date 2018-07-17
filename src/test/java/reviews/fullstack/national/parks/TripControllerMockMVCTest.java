@@ -42,11 +42,20 @@ public class TripControllerMockMVCTest {
 	@Mock
 	private Trip secondTrip;
 	
+	@Mock
+	private Tag tag;
+	
+	@Mock
+	private Tag secondTag;
+	
 	@MockBean
 	private TripRepository tripRepo;
 	
 	@MockBean
 	private ReviewRepository reviewRepo;
+	
+	@MockBean
+	private TagRepository tagRepo;
 	
 	@Test
 	public void shouldRouteForSingleTripView() throws Exception {
@@ -113,6 +122,20 @@ public class TripControllerMockMVCTest {
 		when(reviewRepo.findAll()).thenReturn(allReviews);
 		
 		mvc.perform(get("/show-reviews")).andExpect(model().attribute("reviews", is(allReviews)));
+	}
+	
+	@Test
+	public void shouldPutSingleTagIntoModel() throws Exception {
+		when(tagRepo.findById(2L)).thenReturn(Optional.of(tag));
+		mvc.perform(get("/tag?id=2")).andExpect(model().attribute("tag", is(tag)));
+	}
+	
+	@Test
+	public void shouldPutAllTagsIntoModel() throws Exception {
+		Collection<Tag>allTags = Arrays.asList(tag, secondTag);
+		when(tagRepo.findAll()).thenReturn(allTags);
+		
+		mvc.perform(get("/show-tags")).andExpect(model().attribute("tags", is(allTags)));
 	}
 	
 }
