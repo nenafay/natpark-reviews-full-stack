@@ -194,13 +194,4 @@ public class JPAMappingTest {
 	
 	}
 	
-	@Test
-	public void shouldSaveAndLoadCommentViaReview() {
-		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding", "imgUrl"));
-		
-		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes","imgUrl", aug2015));
-		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl",aug2015));
-		
-		Comment blabla = reviewRepo.save(new Comment("date", "commentor", "text"));
-	}
 }

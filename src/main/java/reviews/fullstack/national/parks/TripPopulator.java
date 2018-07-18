@@ -80,21 +80,21 @@ public class TripPopulator implements CommandLineRunner{
 				"corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit " + 
 				"esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", "images/tree.jpg", jun17));
 	
-		Tag lake = new Tag("lake","/images/lake.jpg", acadia, adirondack, whitemts, wayne);
+		Tag lake = new Tag("lake", acadia, adirondack, whitemts, wayne);
 		
-		Tag family = new Tag("family friendly", "/images/family.jpg", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite );
+		Tag family = new Tag("family friendly", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite );
 		
-		Tag science = new Tag("science","/images/science.jpg", joshuaTree, deathValley, escalante, grandCanyon);
+		Tag science = new Tag("science", joshuaTree, deathValley, escalante, grandCanyon);
 		
-		Tag history = new Tag("history", "/images/history.jpg", deathValley, yosemite, moundCity);
+		Tag history = new Tag("history", deathValley, yosemite, moundCity);
 		
-		Tag tent = new Tag("tent camping", "/images/tent.jpg", sequoia, joshuaTree, whitemts, acadia, adirondack);
+		Tag tent = new Tag("tent camping", sequoia, joshuaTree, whitemts, acadia, adirondack);
 		
-		Tag popular = new Tag("popular", "/images/popular.jpg", sequoia, joshuaTree, yosemite, grandCanyon);
+		Tag popular = new Tag("popular", sequoia, joshuaTree, yosemite, grandCanyon);
 		
-		Tag noBugs = new Tag("not buggy", "images/noBugs.jpg", joshuaTree, deathValley, escalante, grandCanyon);
+		Tag noBugs = new Tag("not buggy", joshuaTree, deathValley, escalante, grandCanyon);
 		
-		Tag basic = new Tag("basic", "images/basic.jpg", deathValley, wayne, whitemts);
+		Tag basic = new Tag("basic", deathValley, wayne, whitemts);
 
 	}	
 }

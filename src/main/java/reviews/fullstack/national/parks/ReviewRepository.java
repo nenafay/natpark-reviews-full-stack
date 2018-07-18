@@ -10,7 +10,5 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 	Collection<Review> findByTripId(Long tripId);
 
 	Collection<Review> findByTagsContains(Tag tag);
-
-	Comment save(Comment comment);
 	
 }

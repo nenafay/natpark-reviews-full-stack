@@ -61,9 +61,8 @@ public class Tag {
 		this.name = name;
 	}
 	
-	public Tag(String name, String imgUrl, Review...reviews) {
+	public Tag(String name, Review...reviews) {
 		this.name = name;
-		this.imgUrl = imgUrl;
 		this.reviews = new  ArrayList<Review>();
 		for (Review review : reviews) {
 			this.reviews.add(review);
