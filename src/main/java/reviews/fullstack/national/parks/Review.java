@@ -40,10 +40,6 @@ public class Review {
 		
 	}
 	
-	public Review (String name) {
-		this.name = name;
-	}
-	
 	public Review(String name, String description, String imgUrl, Trip trip) {
 		this.name = name;
 		this.description = description;
