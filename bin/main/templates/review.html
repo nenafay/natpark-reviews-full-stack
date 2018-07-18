@@ -3,23 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Generational Journeys: Review</title>
+  <title th:text="'Generations and Journeys - '+ ${review.name}"></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <script src="main.js"></script>
 </head>
-<body>
-    <header>
-      <h1 th:text = "'This is what we thought about ' + ${review.name} + ':'"></h1>
-      <h2>National Park Reviews for People Who Don't Plan</h2>
-    </header>
-    
+<div class="container">
+    <div th:replace="header"></div>
+
     <main>
-      <h2></h2>
-        <img th:src = "@{${review.imgUrl}}"/>
-        <a th:href = "@{/review(id=${review.id})}"
-        	th:text = "${review.name}"></a>
+      <div class="titleBlock">
+          <div th:if = "${review.trip}">
+            <a th:href = "@{/review(id=${review.trip.id})}"
+              th:text = "'Other reviews from our ' + ${product.category.name} + ' trip...'"></a>
+          </div>
+      </div>
+
+      <div id="reviewDetails">
+        <img th:src="@{${review.imgUrl}}" />
+        <h2 th:text = "${review.name}"></h2>
+        <p th:text="${review.description}"></p>
+      </div>
+      
+      <form method="POST" th:action="@{/addCommentToReview}" id="addComment" class="comment">
+        <div>
+          Comment: <input type="number" name="quantity" value="1">
+          <input type="hidden" th:value="${product.id}" name="id">
+          <input type="Submit" value="Add to Cart">
+        </div>
+        <div>
+          In Cart: <span th:text="${quantity}"></span>
+        </div>
+      </form>
+
     </main>
-  
+
+    <div th:replace="footer"></div>
+  </div>
 </body>
 </html>

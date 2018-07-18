@@ -1,28 +1,32 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Generational Journeys: Trip</title>
+  <title th:text="'Generations and Journeys - ' + ${trip.name}"></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <script src="main.js"></script>
 </head>
 <body>
-   <header>
-      <h1 th:text="${trip.name}"></h1>
-      <h2 th:text="${trip.description}"></h2>
-    </header>
+  <div class="container">
+    <div th:replace="header"></div>
+    
     <main>
-      <h2>National Park Reviews for People Who Don't Plan</h2>
-      <div1 th:each = "review:${trip.reviews}">
-          <a th:href = "@{/trip(id=${trip.id})}">
-            <img th:src = "@{${trip.imgUrl}}"/>
-          </a>
-          <p th:text = "${trip.name}"></p>
-      </div1>
-
+      <div class="titleBlock">
+        <h2><span th:text = "${trip.name}"></span> Reviews</h2>
+      </div>
+      <section class="itemsForReviews">
+        <div th:each="review: ${trip.reviews}">
+            <a th:href="@{/review(id=${review.id})}">
+              <h3 th:text="${review.name}"></h3>
+              <img th:src="@{${review.imgUrl}}" />
+            </a>
+        </div>
+      </section>
     </main>
-  
+
+    <div th:replace="footer"></div>
+  </div>
 </body>
 </html>

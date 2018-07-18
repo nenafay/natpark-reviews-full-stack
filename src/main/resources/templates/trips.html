@@ -18,14 +18,10 @@
         <div th:each="trip : ${trips}">
             <a th:href="@{/trip(id = ${trip.id})}">
               <h3 th:text="${trip.name}"></h3>
-              <img th:src="@{${trip.imageUrl}}" />
+              <img th:src="@{${trip.imgUrl}}" />
             </a>
-            <div>
-             	Reviews:<span th:text="${trip.reviewCount}"></span>
-            </div>
         </div>
       </section>
-
     </main>
     
     <div th:replace="footer"></div>

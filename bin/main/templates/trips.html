@@ -3,25 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Generational Journeys</title>
+  <title>Generations and Journeys - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <script src="main.js"></script>
 </head>
 <body>
-    <header>
-      <h1>Generational Journeys</h1>
-      <h2>Road Trips and Reviews with My Mother and Daughter</h2>
-    </header>
+   <div class="container">
+    <div th:replace="header"></div>
+
     <main>
-        <h1>Road Trips</h1>
-        <div1 th:each="trip : ${trips}"> 
-            <a th:href = "@{/trip(id=${trip.id})}">
-            <img th:src = "@{${trip.imgUrl}}"/>
+      <h2>Some Amazing Trips</h2>
+      <section class="itemsForTrips">
+        <div th:each="trip : ${trips}">
+            <a th:href="@{/trip(id = ${trip.id})}">
+              <h3 th:text="${trip.name}"></h3>
+              <img th:src="@{${trip.imgUrl}}" />
             </a>
-            <p th:text = "${trip.name}"></p>
-        </div1>
+        </div>
+      </section>
     </main>
-  
+    
+    <div th:replace="footer"></div>
+  </div>
 </body>
 </html>
