@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TripRepository extends CrudRepository<Trip, Long> {
 
-	String findByReviewsContains(Review review);
+	Object findByReviewsContains(Review review);
 
 	
 	

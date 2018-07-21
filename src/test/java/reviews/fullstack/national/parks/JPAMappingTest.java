@@ -140,8 +140,10 @@ public class JPAMappingTest {
 		Trip aug2015 = tripRepo.save(new Trip("August, 2015", "Janna's Wedding", "imgUrl"));
 		
 		Review adirondack = reviewRepo.save(new Review("Adirondack", "description", "url", aug2015));
+		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl",aug2015));
+
 		
-		Tag tag = tagRepo.save(new Tag("tag", "imgUrl", adirondack));
+		Tag tag = tagRepo.save(new Tag("tag", "url", adirondack, acadia));
 		long tagId = tag.getId();
 		
 		entityManager.flush();
@@ -160,7 +162,7 @@ public class JPAMappingTest {
 		Review adirondack = reviewRepo.save(new Review("Adirondack", "description", "url", aug2015));
 		Review acadia = reviewRepo.save(new Review("Acadia National Park", "description", "url", aug2015));
 		
-		Tag tag = new Tag("has lake", "imgUrl", adirondack, acadia);
+		Tag tag = new Tag("has lake", "url", adirondack, acadia);
 		tag = tagRepo.save(tag);
 		long tagId = tag.getId(); 
 		
@@ -180,7 +182,7 @@ public class JPAMappingTest {
 		Review adirondack = reviewRepo.save(new Review ("Adirondack National Park", "lots of mosquitoes","imgUrl", aug2015));
 		Review acadia = reviewRepo.save(new Review ("Acadia National Park", "no moose spotted", "imgUrl",aug2015));
 		
-		Tag tag = new Tag("has lake", "imgUrl", adirondack, acadia);
+		Tag tag = new Tag("has lake", "Url", adirondack, acadia);
 		tag = tagRepo.save(tag);
 		long tagId = tag.getId(); 
 		

@@ -22,6 +22,9 @@ public class ReviewRestController {
 	@Resource
 	private TagRepository tagRepo;
 	
+	@Resource
+	private CommentRepository commentRepo;
+	
 	@RequestMapping("")
 	public Iterable<Review> findAllReviews(){
 		return reviewRepo.findAll();
@@ -37,4 +40,5 @@ public class ReviewRestController {
 		Tag tag = tagRepo.findByNameIgnoreCaseLike(tagName);
 		return reviewRepo.findByTagsContains(tag);
 	}
+	
 }

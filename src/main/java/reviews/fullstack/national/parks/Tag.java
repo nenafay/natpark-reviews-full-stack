@@ -18,6 +18,18 @@ public class Tag {
 	
 	private String name;
 	
+	public Tag() {
+		
+	}
+	
+	public Tag(String name, String url, Review ...reviews) {
+			this.name = name;
+			this.reviews = new  ArrayList<Review>();
+			for (Review review : reviews) {
+				this.reviews.add(review);
+			}
+		}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,7 +56,7 @@ public class Tag {
 	@ManyToMany
 	private Collection<Review> reviews;
 
-	private String imgUrl;
+	private String url;
 	
 	public Collection<Review> getReviews() {
 		return reviews;
@@ -54,23 +66,12 @@ public class Tag {
 		this.reviews = reviews;
 	}
 	
-	public Tag() {
-	}
-
-	public Tag(String name) {
-		this.name = name;
-	}
-	
-	public Tag(String name, Review...reviews) {
-		this.name = name;
-		this.reviews = new  ArrayList<Review>();
-		for (Review review : reviews) {
-			this.reviews.add(review);
-		}
-	}
-
 	public String getName() {
 		return name;
+	}
+	
+	public String getURL() {
+		return url;
 	}
 
 	public long getId() {

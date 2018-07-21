@@ -12,12 +12,7 @@
     <div th:replace="header"></div>
 
     <main>
-      <div class="titleBlock">
-          <div th:if = "${review.trip}">
-            <a th:href = "@{/review(id=${review.trip.id})}"
-              th:text = "'Other reviews from our ' + ${product.category.name} + ' trip...'"></a>
-          </div>
-      </div>
+    
 
       <div id="reviewDetails">
         <img th:src="@{${review.imgUrl}}" />
@@ -25,17 +20,15 @@
         <p th:text="${review.description}"></p>
       </div>
       
-      <form method="POST" th:action="@{/addCommentToReview}" id="addComment" class="comment">
-        <div>
-          Comment: <input type="number" name="quantity" value="1">
-          <input type="hidden" th:value="${product.id}" name="id">
-          <input type="Submit" value="Add to Cart">
-        </div>
-        <div>
-          In Cart: <span th:text="${quantity}"></span>
-        </div>
-      </form>
-
+      <div class="bottomBlock">
+          <div th:if = "${review.trip}">
+            <a th:href = "@{/review(id=${review.trip.id})}"
+              th:text = "'Other reviews from our ' + ${review.trip.name} + ' trip...'"></a>
+          </div>
+          <div>
+           
+          </div>
+      </div>
     </main>
 
     <div th:replace="footer"></div>
