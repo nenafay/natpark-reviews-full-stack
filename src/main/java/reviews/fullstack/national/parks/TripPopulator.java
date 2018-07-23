@@ -79,6 +79,12 @@ public class TripPopulator implements CommandLineRunner{
 		Review joshuaTree = reviewRepo.save(new Review ("JoshuaTree National Park", "Ut enim ad minima veniam, quis nostrum exercitationem ullam" + 
 				"corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit " + 
 				"esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", "/images/tree.jpg", jun17));
+		
+		Review pinnacles = reviewRepo.save(new Review("Pinnacles National Park", "Ut enim ad minima veniam, quis nostrum exercitationem ullam" + 
+				"corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit " + 
+				"esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", "/images/pinnacles.jpg", jun17));
+		
+		
 	
 		Tag lake = new Tag("lake", "url", acadia, adirondack, whitemts, wayne);
 		
@@ -95,6 +101,8 @@ public class TripPopulator implements CommandLineRunner{
 		Tag noBugs = new Tag("not buggy", "url", joshuaTree, deathValley, escalante, grandCanyon);
 		
 		Tag basic = new Tag("basic", "url", deathValley, wayne, whitemts);
-
+		
+		Tag wildlife = new Tag("wildlife", "url", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite, sequoia, joshuaTree, deathValley);
+ 
 	}	
 }

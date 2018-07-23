@@ -9,5 +9,5 @@ xhr.onreadystatechange = function(){
 	}
 }
 
-xhr.open('GET', 'http://localhost:8080/courses', true)
+xhr.open('GET', 'http://localhost:8080/', true)
 xhr.send()
