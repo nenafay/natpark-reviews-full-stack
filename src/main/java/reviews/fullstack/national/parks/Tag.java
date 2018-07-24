@@ -22,35 +22,13 @@ public class Tag {
 		
 	}
 	
-	public Tag(String name, String url, Review ...reviews) {
+	public Tag(String name, String url) {
 			this.name = name;
 			this.reviews = new  ArrayList<Review>();
 			for (Review review : reviews) {
 				this.reviews.add(review);
 			}
 		}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Tag other = (Tag) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
 
 	@JsonIgnore
 	@ManyToMany(mappedBy="tag")
@@ -78,4 +56,25 @@ public class Tag {
 		return id;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tag other = (Tag) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }

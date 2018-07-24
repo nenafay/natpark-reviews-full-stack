@@ -1,5 +1,6 @@
 :root {
   font-size: 16px;
+
 }
 
 * {
@@ -14,9 +15,9 @@
 } */
 
 .container {
-  max-width: 900px;
+  max-width: 750px;
   margin: auto;
-  background: #fff;
+  background: //stuff;
   box-shadow:
     0 0 0 1px #000, /* solid outline shadow on top */
     0 0 80px #aaa; /* grey blurry shadow behind it*/
@@ -225,7 +226,7 @@ main ul {
 }
 
 footer {
-  border-top: 2px solid rbga (25,25,25);
+  border-top: 2px solid #666;
   padding: 1rem;
   background: #ddd;
   color: #222;
