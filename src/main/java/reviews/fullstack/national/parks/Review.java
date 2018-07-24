@@ -1,5 +1,6 @@
 package reviews.fullstack.national.parks;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Review {
 	@ManyToOne
 	private Trip trip;
 	
-	@ManyToMany(mappedBy = "reviews")
+	@ManyToMany
 	private Collection<Tag> tags;
 	
 	@OneToMany(mappedBy = "review")
@@ -40,13 +41,18 @@ public class Review {
 		
 	}
 	
-	public Review(String name, String description, String imgUrl, Trip trip) {
+	public Review(String name, String description, String imgUrl, Trip trip, Tag tags) {
 		this.name = name;
 		this.description = description;
 		this.trip = trip;
 		this.setImgUrl(imgUrl);
+		this.tags = new ArrayList<Tag>();
 	}
-
+	
+	public Collection<Tag> getTags() {
+		System.out.println(tags);
+		return tags;
+	}
 	
 	public Long getId() {
 		return id;

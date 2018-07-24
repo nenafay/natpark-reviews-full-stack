@@ -53,7 +53,7 @@ public class Tag {
 	}
 
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(mappedBy="tag")
 	private Collection<Review> reviews;
 
 	private String url;

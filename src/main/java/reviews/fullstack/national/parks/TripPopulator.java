@@ -82,15 +82,15 @@ public class TripPopulator implements CommandLineRunner{
 		
 		Review pinnacles = reviewRepo.save(new Review("Pinnacles National Park", "Ut enim ad minima veniam, quis nostrum exercitationem ullam" + 
 				"corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit " + 
-				"esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", "/images/pinnacles.jpg", jun17));
+				"esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", "/images/pinnacles.jpg", jun17, family, science, wildlife ));
 		
 		
 	
 		Tag lake = new Tag("lake", "url", acadia, adirondack, whitemts, wayne);
 		
-		Tag family = new Tag("family friendly", "url", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite );
+		Tag family = new Tag("family friendly", "url", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite, pinnacles );
 		
-		Tag science = new Tag("science", "url", joshuaTree, deathValley, escalante, grandCanyon);
+		Tag science = new Tag("science", "url", joshuaTree, deathValley, escalante, grandCanyon, pinnacles);
 		
 		Tag history = new Tag("history", "url", deathValley, yosemite, moundCity);
 		
@@ -102,7 +102,7 @@ public class TripPopulator implements CommandLineRunner{
 		
 		Tag basic = new Tag("basic", "url", deathValley, wayne, whitemts);
 		
-		Tag wildlife = new Tag("wildlife", "url", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite, sequoia, joshuaTree, deathValley);
+		Tag wildlife = new Tag("wildlife", "url", acadia, adirondack, whitemts, wayne, moundCity, grandCanyon, yosemite, sequoia, joshuaTree, deathValley, pinnacles);
  
 	}	
 }
