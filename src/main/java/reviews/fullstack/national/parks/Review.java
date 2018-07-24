@@ -2,6 +2,7 @@ package reviews.fullstack.national.parks;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,12 +42,12 @@ public class Review {
 		
 	}
 	
-	public Review(String name, String description, String imgUrl, Trip trip, Tag tags) {
+	public Review(String name, String description, String imgUrl, Trip trip, Tag...tags) {
 		this.name = name;
 		this.description = description;
 		this.trip = trip;
 		this.setImgUrl(imgUrl);
-		this.tags = new ArrayList<Tag>();
+		this.tags = new HashSet<Tag>();
 	}
 	
 	public Collection<Tag> getTags() {
