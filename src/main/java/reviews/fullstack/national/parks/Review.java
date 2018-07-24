@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.assertj.core.util.Arrays;
+
 
 @Entity
 public class Review {
@@ -47,7 +49,7 @@ public class Review {
 		this.description = description;
 		this.trip = trip;
 		this.setImgUrl(imgUrl);
-		this.tags = new HashSet<Tag>();
+		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 	
 	public Collection<Tag> getTags() {
